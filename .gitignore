@@ -1,5 +1,7 @@
-chef-solo
-
+# private data
+knife.rb
 nodes/*
+
+chef-solo
 
 *.swp
