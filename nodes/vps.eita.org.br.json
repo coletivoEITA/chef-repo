@@ -1,0 +1,41 @@
+{
+
+  "apache": {
+    "listen_ports": [80, 81],
+    "keepalivetimeout": 20,
+    "keepaliverequests": 1000,
+    "default_modules": ["deflate", "expires", "rewrite", "proxy", "proxy_balancer", "proxy_http"]
+  },
+
+  "etherpad-lite": {
+    "service_name": "pad.eita",
+    "service_user": "pad.eita",
+    "service_user_gid": "pad.eita",
+
+    "domain": "pad.eita.org.br",
+    "proxy_server": "apache",
+
+    "db_host": "localhost", 
+    "db_port": 5433,
+    "db_user": "pad.eita", 
+    "db_password": "pad.eita", 
+    "db_name": "pad.eita",
+
+    "etherpad_git_repo_url": "https://github.com/coletivoEITA/etherpad-lite.git",
+
+    "title": "Pad EITA",
+    "default_text" : "Boas vindas ao nosso editor de texto colaborativo!\n\nVocê e outras pessoas podem escrever ao mesmo tempo, cada um com sua cor, e ao mesmo tempo conversar na coluna de bate-papo à direita.\n\nBom trabalho, sempre em cooperação,\n\nequipe da EITA-Educação, Informação e Tecnologia para Autogestão (http://eita.org.br)",
+
+    "session_key" : "",
+    "admin_enabled": true,
+    "admin_password": ""
+  },
+  
+  "run_list": [
+    "recipe[apt]",
+
+    "recipe[etherpad-lite]"
+  ]
+}
+
+
