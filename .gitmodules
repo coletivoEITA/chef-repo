@@ -10,3 +10,6 @@
 [submodule "cookbooks/etherpad-lite"]
 	path = cookbooks/etherpad-lite
 	url = git@github.com:coletivoEITA/etherpad-lite-cookbook.git
+[submodule "cookbooks/apache2"]
+	path = cookbooks/apache2
+	url = https://github.com/onehealth-cookbooks/apache2-onehealth.git
