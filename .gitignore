@@ -1,7 +1,9 @@
 # private data
 knife.rb
 nodes/*
+*.pem
 
 chef-solo
+syntax_check_cache
 
 *.swp
