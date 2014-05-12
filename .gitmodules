@@ -1,0 +1,12 @@
+[submodule "cookbooks/wordpress"]
+	path = cookbooks/wordpress
+	url = git@github.com:coletivoEITA/wordpress-cookbook.git
+[submodule "cookbooks/fetchmail"]
+	path = cookbooks/fetchmail
+	url = git@github.com:coletivoEITA/fetchmail-cookbook.git
+[submodule "cookbooks/request-tracker"]
+	path = cookbooks/request-tracker
+	url = git@github.com:coletivoEITA/request-tracker-cookbook.git
+[submodule "cookbooks/etherpad-lite"]
+	path = cookbooks/etherpad-lite
+	url = git@github.com:coletivoEITA/etherpad-lite-cookbook.git
