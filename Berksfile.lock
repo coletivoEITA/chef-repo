@@ -1,5 +1,4 @@
 DEPENDENCIES
-  apache2
   apt
   database
   iis

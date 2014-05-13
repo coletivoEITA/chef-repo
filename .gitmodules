@@ -12,4 +12,7 @@
 	url = git@github.com:coletivoEITA/etherpad-lite-cookbook.git
 [submodule "cookbooks/apache2"]
 	path = cookbooks/apache2
-	url = https://github.com/onehealth-cookbooks/apache2-onehealth.git
+	url = git@github.com:coletivoEITA/apache2-cookbook
+[submodule "cookbooks/nginx-fallback-to-apache"]
+	path = cookbooks/nginx-fallback-to-apache
+	url = git@github.com:coletivoEITA/nginx-fallback-to-apache-cookbook.git
