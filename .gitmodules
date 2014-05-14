@@ -16,3 +16,6 @@
 [submodule "cookbooks/nginx-fallback-to-apache"]
 	path = cookbooks/nginx-fallback-to-apache
 	url = git@github.com:coletivoEITA/nginx-fallback-to-apache-cookbook.git
+[submodule "cookbooks/noosfero"]
+	path = cookbooks/noosfero
+	url = git@github.com:coletivoEITA/noosfero-cookbook.git
