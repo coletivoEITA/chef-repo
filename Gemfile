@@ -9,3 +9,5 @@ group :development do
   gem 'chef-zero'
   gem 'knife-solo'
 end
+
+gem 'pg'

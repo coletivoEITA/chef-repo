@@ -2,6 +2,8 @@ DEPENDENCIES
   apt
   database
   iis
+  java
+  line
   mysql
   nginx
   nodejs
@@ -30,6 +32,8 @@ GRAPH
   iis (2.1.2)
     windows (>= 1.2.6)
   iptables (0.13.2)
+  java (1.22.0)
+  line (0.5.1)
   logrotate (1.5.0)
   mysql (5.2.6)
   mysql-chef_gem (0.0.2)

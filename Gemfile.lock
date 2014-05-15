@@ -139,6 +139,7 @@ GEM
       mixlib-shellout (~> 1.2)
       systemu (~> 2.5.2)
       yajl-ruby
+    pg (0.17.1)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -211,3 +212,4 @@ DEPENDENCIES
   chef-server
   chef-zero
   knife-solo
+  pg
