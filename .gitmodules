@@ -5,7 +5,7 @@
 	path = cookbooks/fetchmail
 	url = git@github.com:coletivoEITA/fetchmail-cookbook.git
 [submodule "cookbooks/request-tracker"]
-	path = cookbooks/request-tracker
+	path = cookbooks/request_tracker
 	url = git@github.com:coletivoEITA/request-tracker-cookbook.git
 [submodule "cookbooks/etherpad-lite"]
 	path = cookbooks/etherpad-lite
