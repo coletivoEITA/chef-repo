@@ -1,0 +1,162 @@
+// cookbook for testing purposes and to server as an example
+{
+
+  "rvm": {
+    "user_installs": [
+      {
+        "user": "noosfero",
+        "rubies": [ "ree" ],
+        "default_ruby": "ree",
+        "gems": {
+          "ree@noosfero": []
+        }
+      }
+    ]
+  },
+
+  "java": {
+    "install_flavor": "openjdk",
+    "jdk_version": "7"
+  },
+
+  "postgresql": {
+    "version": "9.3",
+    "password": {
+      // needed for chef-solo
+      "postgres": "iqHDDo1o"
+    },
+    "config": {
+      "shared_buffers": "128MB",
+      "effective_cache_size": "512MB",
+      "datestyle": "iso, dmy",
+      "lc_messages": "pt_BR.UTF-8",
+      "lc_monetary": "pt_BR.UTF-8",
+      "lc_numeric": "pt_BR.UTF-8",
+      "lc_time": "pt_BR.UTF-8"
+    }
+  },
+
+  "memcached": {
+    "memory": 128,
+    "listen": "127.0.0.1"
+  },
+
+  "varnish": {
+    "version": "2.1",
+    "listen_address": "0.0.0.0",
+    "listen_port": 80,
+    "storage": "file",
+    "storage_size": "1G",
+    "vcl_cookbook": "noosfero"
+  },
+
+  "nginx": {
+    "listen_ports": [81],
+    "keepalive_timeout": 20,
+    "default_site_enabled": false
+  },
+
+  "apache": {
+    "version": "2.4",
+    "listen_addresses": ["127.0.0.1"],
+    "listen_ports": [82],
+    "keepalivetimeout": 20,
+    "keepaliverequests": 1000
+  },
+
+  "noosfero": {
+    "service_name": "noosfero",
+    "path": "/home/noosfero/escambo.org.br",
+
+    "git_url": "https://github.com/ESCAMBO/noosfero-ecosol.git",
+    "git_revision": "master",
+
+    "dependencies_with": "bundler",
+    //"upgrade_script": " ",
+    "rvm_load": "ree@noosfero",
+
+    "server_name": "localhost",
+    "custom_domains": [
+      "dev1.t"
+    ],
+
+    "server": {
+      "proxy": "nginx",
+      "backend": "unicorn",
+      "workers": 1
+    },
+    "cache": {
+      "server": "varnish"
+    },
+
+    "db": {
+      "name": "noosfero_escambo.org.br_production",
+      "password": "iqHDDo1o",
+      "create_from_dump": "/home/braulio/Projects/noosfero-ecosol/escambo/dump.sql"
+    },
+
+    "environment": {
+      "name": "ESCAMBO",
+      "domain": "escambo.org.br"
+    },
+    "plugins": ["cms_learning", "currency", "escambo", "evaluation", "exchange", "sniffer", "solr"],
+
+    "settings": {
+      "exception_recipients": ["alantygel@gmail.com", "brauliobo@gmail.com"]
+    },
+
+    "plugin_settings": {
+      "solr": {
+        "port": 8983,
+        "memory": 128
+      }
+
+    }
+  },
+
+  "etherpad-lite": {
+    "service_name": "pad.eita",
+    "service_user": "pad.eita",
+    "service_user_gid": "pad.eita",
+
+    "domain": "pad.eita.org.br",
+    "proxy_server": "apache",
+
+    "db_host": "localhost", 
+    "db_user": "pad.eita", 
+    "db_password": "", 
+    "db_name": "pad.eita",
+
+    "etherpad_git_repo_url": "https://github.com/coletivoEITA/etherpad-lite.git",
+
+    "title": "Pad EITA",
+    "default_text" : "Boas vindas ao nosso editor de texto colaborativo!\n\nVocê e outras pessoas podem escrever ao mesmo tempo, cada um com sua cor, e ao mesmo tempo conversar na coluna de bate-papo à direita.\n\nBom trabalho, sempre em cooperação,\n\nequipe da EITA-Educação, Informação e Tecnologia para Autogestão (http://eita.org.br)",
+
+    "session_key" : "",
+    "admin_enabled": true,
+    "admin_password": ""
+  },
+  
+  "run_list": [
+    //"recipe[apt]",
+
+    "recipe[nginx]",
+    "recipe[nginx_fallback_to_apache]",
+    "recipe[apache2]",
+    "recipe[varnish]",
+
+    "recipe[postgresql]",
+    "recipe[postgresql::server]",
+
+    "recipe[memcached]",
+
+    //"recipe[rvm::user]",
+
+    "recipe[java]",
+    
+    "recipe[noosfero]"
+    //"recipe[etherpad-lite]"
+  ]
+}
+
+
