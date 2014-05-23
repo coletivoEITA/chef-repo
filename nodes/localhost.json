@@ -1,6 +1,11 @@
 // cookbook for testing purposes and to server as an example
 {
 
+  "locales": {
+    "packages": ["language-pack-pt", "language-pack-en"],
+    "default": "pt_BR.UTF-8",
+  },
+
   "locale": {
     "lang": "pt_BR.UTF-8",
     "lc_all": "pt_BR.UTF-8"
@@ -147,6 +152,7 @@
   
   "run_list": [
     //"recipe[apt]",
+    "recipe[locales]",
     "recipe[locale]",
     "recipe[timezone-ii]",
 

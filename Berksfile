@@ -6,6 +6,7 @@ source "https://api.berkshelf.com"
 cookbook "line"
 
 # system
+cookbook "locales"
 cookbook "locale"
 cookbook "timezone-ii"
 cookbook "apt"

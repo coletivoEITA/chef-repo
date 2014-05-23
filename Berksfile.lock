@@ -5,6 +5,7 @@ DEPENDENCIES
   java
   line
   locale
+  locale-gen
   memcached
   mysql
   nginx
@@ -41,6 +42,7 @@ GRAPH
   java (1.22.0)
   line (0.5.1)
   locale (0.0.2)
+  locale-gen (0.0.1)
   logrotate (1.5.0)
   memcached (1.7.2)
     runit (~> 1.0)
