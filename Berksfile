@@ -6,6 +6,8 @@ source "https://api.berkshelf.com"
 cookbook "line"
 
 # system
+cookbook "locale"
+cookbook "timezone-ii"
 cookbook "apt"
 
 # use submodule version for 2.4 support
