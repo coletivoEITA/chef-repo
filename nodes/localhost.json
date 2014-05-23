@@ -42,7 +42,7 @@
   },
 
   "varnish": {
-    "start": "no"
+    "start": "no",
     "version": "2.1",
     "listen_address": "0.0.0.0",
     "listen_port": 80,
