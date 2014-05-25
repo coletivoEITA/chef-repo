@@ -8,6 +8,7 @@ cookbook "line"
 # system
 cookbook "locales"
 cookbook "locale"
+cookbook "limits"
 cookbook "timezone-ii"
 cookbook "apt"
 

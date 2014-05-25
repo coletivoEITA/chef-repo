@@ -13,6 +13,12 @@
 
   "tz": "America/Bahia",
 
+  "limits": {
+    "system_limits": [
+      "*              soft    nice    0"
+    ]
+  },
+
   "rvm": {
     "user_installs": [
       {
@@ -155,6 +161,7 @@
     "recipe[locales]",
     "recipe[locale]",
     "recipe[timezone-ii]",
+    "recipe[limits]",
 
     "recipe[nginx]",
     "recipe[nginx_fallback_to_apache]",
