@@ -3,7 +3,7 @@
 
   "locales": {
     "packages": ["language-pack-pt", "language-pack-en"],
-    "default": "pt_BR.UTF-8",
+    "default": "pt_BR.UTF-8"
   },
 
   "locale": {
@@ -136,14 +136,14 @@
   "etherpad-lite": {
     "service_name": "pad.eita",
     "service_user": "pad.eita",
-    "service_user_gid": "pad.eita",
+    "service_group": "pad.eita",
 
-    "domain": "pad.eita.org.br",
-    "proxy_server": "apache",
+    "domain": "pad.eita",
+    "proxy_server": "nginx",
 
     "db_host": "localhost", 
     "db_user": "pad.eita", 
-    "db_password": "", 
+    "db_password": "aniceramdompasswordforchefsolo", 
     "db_name": "pad.eita",
 
     "etherpad_git_repo_url": "https://github.com/coletivoEITA/etherpad-lite.git",
@@ -151,9 +151,11 @@
     "title": "Pad EITA",
     "default_text" : "Boas vindas ao nosso editor de texto colaborativo!\n\nVocê e outras pessoas podem escrever ao mesmo tempo, cada um com sua cor, e ao mesmo tempo conversar na coluna de bate-papo à direita.\n\nBom trabalho, sempre em cooperação,\n\nequipe da EITA-Educação, Informação e Tecnologia para Autogestão (http://eita.org.br)",
 
-    "session_key" : "",
+    "session_key" : "fasfdsafsafdsafdsa",
     "admin_enabled": true,
-    "admin_password": ""
+    "admin_password": "hello",
+
+    "use_abiword": false
   },
   
   "run_list": [
@@ -167,7 +169,7 @@
     "recipe[nginx_fallback_to_apache]",
     "recipe[apache2]",
     //"recipe[varnish]",
-
+    
     "recipe[postgresql]",
     "recipe[postgresql::server]",
 
@@ -177,8 +179,8 @@
 
     "recipe[java]",
     
-    "recipe[noosfero]"
-    //"recipe[etherpad-lite]"
+    //"recipe[noosfero]"
+    "recipe[etherpad-lite]"
   ]
 }
 
