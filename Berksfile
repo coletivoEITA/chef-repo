@@ -24,6 +24,8 @@ cookbook "npm"
 cookbook "rvm"
 cookbook "java"
 
+cookbook "postfix"
+
 cookbook "database"
 cookbook "mysql"
 cookbook "postgresql"

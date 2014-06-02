@@ -1,5 +1,7 @@
 // cookbook for testing purposes and to server as an example
 {
+  "hostname": "localhost",
+  "fqdn": "localhost.localdomain",
 
   "locales": {
     "packages": ["language-pack-pt", "language-pack-en"],
@@ -35,6 +37,17 @@
   "java": {
     "install_flavor": "openjdk",
     "jdk_version": "7"
+  },
+
+  "postfix": {
+    "mail_type": "master",
+    "main": {
+      "inet_interfaces": "loopback-only",
+
+      "myhostname": "localhost",
+      "mydestination": ["localhost.localdomain", "localhost"],
+      "mynetworks": "107.170.19.68/32 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128"
+    }
   },
 
   "postgresql": {
