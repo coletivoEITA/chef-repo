@@ -73,10 +73,10 @@
   },
 
   "varnish": {
-    "start": "no",
-    "version": "2.1",
-    "listen_address": "0.0.0.0",
-    "listen_port": 80,
+    "start": "yes",
+    "version": "3.0",
+    "listen_address": "127.0.0.1",
+    "listen_port": 8080,
     "storage": "file",
     "storage_size": "1G",
     "vcl_cookbook": "noosfero"
@@ -85,7 +85,13 @@
   "nginx": {
     "listen_ports": [80],
     "keepalive_timeout": 20,
-    "default_site_enabled": false
+    "default_site_enabled": false,
+    "client_max_body_size": 0,
+    "extra_configs": {
+      "proxy_cache_path": "/var/cache/nginx levels=1:2 keys_zone=main:100m inactive=30d max_size=500m",
+      "proxy_cache_key": "$scheme$host$uri$is_args$args",
+      "proxy_temp_path": "/var/tmp/nginx_proxy"
+    }
   },
 
   "apache": {
@@ -103,6 +109,7 @@
     "git_url": "https://github.com/ESCAMBO/noosfero-ecosol.git",
     "git_revision": "master",
 
+    //"dependencies_with": "bundler",
     "dependencies_with": "bundler",
     //"upgrade_script": " ",
     "rvm_load": "ree@noosfero",
@@ -112,13 +119,15 @@
       "dev1.t"
     ],
 
+    "cache": {
+      "server": "varnish",
+      "backend_port": "82"
+    },
     "server": {
       "proxy": "nginx",
       "backend": "unicorn",
-      "workers": 1
-    },
-    "cache": {
-      "server": ""
+      "workers": 1,
+      "proxy_to_cache": true
     },
 
     "db": {
@@ -178,21 +187,20 @@
     "recipe[timezone-ii]",
     "recipe[limits]",
 
+    //"recipe[rvm::user]",
+    "recipe[java]",
+
     "recipe[nginx]",
     "recipe[nginx_fallback_to_apache]",
     "recipe[apache2]",
-    //"recipe[varnish]",
+    "recipe[varnish]",
     
     "recipe[postgresql]",
     "recipe[postgresql::server]",
 
     "recipe[memcached]",
-
-    //"recipe[rvm::user]",
-
-    "recipe[java]",
     
-    //"recipe[noosfero]"
+    "recipe[noosfero]",
     "recipe[etherpad-lite]"
   ]
 }
