@@ -17,7 +17,7 @@
 
   "limits": {
     "system_limits": [
-      "*              soft    nice    0"
+      {"domain": "*", "type": "soft", "item": "nice", "value": "soft"}
     ]
   },
 
@@ -73,10 +73,10 @@
   },
 
   "varnish": {
-    "start": "no",
-    "version": "2.1",
-    "listen_address": "0.0.0.0",
-    "listen_port": 80,
+    "start": "yes",
+    "version": "3.0",
+    "listen_address": "127.0.0.1",
+    "listen_port": 8080,
     "storage": "file",
     "storage_size": "1G",
     "vcl_cookbook": "noosfero"
@@ -85,7 +85,18 @@
   "nginx": {
     "listen_ports": [80],
     "keepalive_timeout": 20,
-    "default_site_enabled": false
+    "default_site_enabled": false,
+    "client_max_body_size": 0,
+    "extra_configs": {
+      "large_client_header_buffers": "4 16k",
+      "proxy_cache_path": "/var/cache/nginx levels=1:2 keys_zone=main:100m inactive=30d max_size=500m",
+      "proxy_cache_key": "$scheme$host$uri$is_args$args",
+      "proxy_temp_path": "/var/tmp/nginx_proxy",
+      "proxy_connect_timeout": 600,
+      "proxy_send_timeout": 600,
+      "proxy_read_timeout": 600,
+      "send_timeout": 600
+    }
   },
 
   "apache": {
@@ -103,6 +114,7 @@
     "git_url": "https://github.com/ESCAMBO/noosfero-ecosol.git",
     "git_revision": "master",
 
+    //"dependencies_with": "bundler",
     "dependencies_with": "bundler",
     //"upgrade_script": " ",
     "rvm_load": "ree@noosfero",
@@ -112,13 +124,15 @@
       "dev1.t"
     ],
 
+    "cache": {
+      "server": "varnish",
+      "backend_port": 82
+    },
     "server": {
       "proxy": "nginx",
       "backend": "unicorn",
-      "workers": 1
-    },
-    "cache": {
-      "server": ""
+      "workers": 1,
+      "proxy_to_cache": true
     },
 
     "db": {
@@ -170,30 +184,43 @@
 
     "use_abiword": false
   },
+
+  "redmine": {
+    "user"                  : "redmine",
+    "deploy_to"             : "/home/redmine/redmine", 
+    "repo"                  : "git://github.com/redmine/redmine.git",
+    "revision"              : "e94debe4151b23be9edd7f6e5cbc4e724cde832a",
+    "port"                  : "80",
+    "domain"                : "redmine.eita.org.br",
+    "database"              : "redmine",
+    "database_user"         : "redmine",
+    "user_password"         : "lqDAJMBbxyuwg",
+    "server_root_password"  : ""
+  },
   
   "run_list": [
-    //"recipe[apt]",
+/*    //"recipe[apt]",
     "recipe[locales]",
     "recipe[locale]",
     "recipe[timezone-ii]",
     "recipe[limits]",
 
+    //"recipe[rvm::user]",
+    "recipe[java]",
+
     "recipe[nginx]",
     "recipe[nginx_fallback_to_apache]",
     "recipe[apache2]",
-    //"recipe[varnish]",
+    "recipe[varnish]",
     
     "recipe[postgresql]",
     "recipe[postgresql::server]",
 
     "recipe[memcached]",
-
-    //"recipe[rvm::user]",
-
-    "recipe[java]",
     
-    //"recipe[noosfero]"
-    "recipe[etherpad-lite]"
+    "recipe[noosfero]"
+    //"recipe[etherpad-lite]" */
+    "recipe[redmine]"
   ]
 }
 
