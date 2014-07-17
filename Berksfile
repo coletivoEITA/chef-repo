@@ -6,15 +6,23 @@ source "https://api.berkshelf.com"
 cookbook "line"
 
 # system
+cookbook "hostname"
 cookbook "locales"
 cookbook "locale"
 cookbook "limits"
 cookbook "timezone-ii"
 cookbook "apt"
+cookbook "logrotate"
+cookbook "cron"
 
-# use submodule version for 2.4 support
+# use fork
+#cookbook "users"
+#cookbook "backup"
+
+# use fork for 2.4 support
 #cookbook "apache2"
-cookbook "nginx"
+# use fork for more config options
+#cookbook "nginx"
 cookbook "varnish"
 
 cookbook "php"
@@ -31,6 +39,8 @@ cookbook "mysql"
 cookbook "postgresql"
 
 cookbook "memcached"
+
+cookbook "owncloud"
 
 # not interested, but others dependency
 cookbook "iis"
