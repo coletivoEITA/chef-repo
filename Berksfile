@@ -1,9 +1,8 @@
 source "https://api.berkshelf.com"
 
-#metadata
-
 # meta recipes
 cookbook "line"
+cookbook "gem_specific_install"
 
 # system
 cookbook "hostname"
