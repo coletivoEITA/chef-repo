@@ -4,21 +4,7 @@
   "fqdn": "localhost.localdomain",
 
   "locales": {
-    "packages": ["language-pack-pt", "language-pack-en"],
-    "default": "pt_BR.UTF-8"
-  },
-
-  "locale": {
-    "lang": "pt_BR.UTF-8",
-    "lc_all": "pt_BR.UTF-8"
-  },
-
-  "tz": "America/Bahia",
-
-  "limits": {
-    "system_limits": [
-      {"domain": "*", "type": "soft", "item": "nice", "value": "soft"}
-    ]
+    "packages": ["language-pack-pt", "language-pack-en"]
   },
 
   "users": {
@@ -26,17 +12,9 @@
       {
         "id": "backup",
         "ssh_keys": [
-          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9gbgFjq2plX2w6PfZjSsio8dA/PS6UNLbYH3zCm52PGTVUX+SY6zOET2X+IYNEwqNl6BKyrUIBTQR+1eaYYAwfHKAuk0B79xMiZgs6cxJfaNa4Y6N57yVSzNEL+NWnDA/dgQBTPuO22N+Kdq78gdl86g4KDQe7GPrOjoPTwppmQ/IMNa2bV/UeQUIQVOalASj7XLVCiKAmweuyP2lVSmgokGjGnJTRji7oEMSgxi7nJwW4BNQZEFhR8+jqnyOEqeTVQXzyi4m/rJ+LyRKm3PsVnD+l+t2UcYsiNfaEli0Vo1rY0s3d7hmAkPgDA9VofHmHwJeADOLlIKdp+ySBWdh braulio@vipra"
         ]
       }   
     ]
-  },
-
-  "backup": {
-    "user": "backup",
-    "group": "backup",
-    "config_path": "/home/backup",
-    "log_path": "/home/backup/log"
   },
 
   "rvm": {
@@ -182,7 +160,7 @@
     "backup": {
       "enable": true,
       "to": {
-        "host": "localhost",
+        "host": "bhakta.eita.org.br",
         "port": 22,
         "user": "backup"
       }
@@ -228,11 +206,8 @@
   },
   
   "run_list": [
-/*    //"recipe[apt]",
-    "recipe[locales]",
-    "recipe[locale]",
-    "recipe[timezone-ii]",
-    "recipe[limits]",
+    "role[server]",
+    /*
 
     //"recipe[rvm::user]",
     "recipe[java]",
