@@ -19,3 +19,18 @@
 [submodule "cookbooks/noosfero"]
 	path = cookbooks/noosfero
 	url = git@github.com:coletivoEITA/noosfero-cookbook.git
+[submodule "cookbooks/backup"]
+	path = cookbooks/backup
+	url = git@github.com:coletivoEITA/backup-cookbook.git
+[submodule "cookbooks/users"]
+	path = cookbooks/users
+	url = https://github.com/coletivoEITA/users.git
+[submodule "cookbooks/nginx"]
+	path = cookbooks/nginx
+	url = git@github.com:coletivoEITA/nginx.git
+[submodule "cookbooks/redmine"]
+	path = cookbooks/redmine
+	url = https://github.com/coletivoEITA/redmine-cookbook
+[submodule "cookbooks/mysql"]
+	path = cookbooks/mysql
+	url = git@github.com:coletivoEITA/mysql-cookbook.git
