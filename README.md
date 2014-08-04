@@ -12,10 +12,6 @@ To operate chef-client, you need to install knife on your local machine:
 Chef Client install
 ===================
 
-The "official" way to do this is to run:
-
-    knife solo prepare client.domainname
-
 Chef client package comes with an isolated and buggy environment. This does not make it possible to install `pg` gem for example.
 Also, a newer version of rubygems is necessary to use specific\_install.
 
@@ -28,5 +24,14 @@ Also, a newer version of rubygems is necessary to use specific\_install.
 Deploy to client
 ================
 
+First of all, BE SURE your repository is up-to-date:
+
+    git pull
+    git submodule update --init --recursive
+
+Then, run -W to see what changes are going to be done
+    knife solo -W cook client.domainname
+
+And finally, carefully watch:
     knife solo cook client.domainname
 
