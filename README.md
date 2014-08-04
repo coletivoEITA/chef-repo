@@ -30,8 +30,10 @@ First of all, BE SURE your repository is up-to-date:
     git submodule update --init --recursive
 
 Then, run -W to see what changes are going to be done
+
     knife solo -W cook client.domainname
 
 And finally, carefully watch:
+
     knife solo cook client.domainname
 
