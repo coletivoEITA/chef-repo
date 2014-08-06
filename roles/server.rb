@@ -6,6 +6,7 @@ run_list [
   "recipe[apt]",
   "recipe[hostname]",
   "recipe[timezone-ii]",
+  "recipe[ntp]",
   "recipe[locales]",
   "recipe[locale]",
   "recipe[limits]",
@@ -30,6 +31,13 @@ default_attributes({
     ],
   },
   tz: "America/Sao_Paulo",
+  ntp: {
+    sync_clock: true,
+    servers: [
+      'a.ntp.br', 'b.ntp.br', 'c.ntp.br', 'pool.ntp.br',
+    ],
+    apparmor_enabled: false,
+  },
   locales: {
     default: "pt_BR.UTF-8",
   },

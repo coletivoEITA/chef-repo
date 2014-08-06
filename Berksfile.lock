@@ -34,6 +34,7 @@ DEPENDENCIES
   noosfero
     git: git://github.com/coletivoEITA/noosfero-cookbook.git
     revision: 5bb9a1b9dba3e3fbb5c62b212838dcddc8b1463d
+  ntp
   owncloud
     git: git://github.com/coletivoEITA/owncloud-cookbook.git
     revision: 89670eeb939827e8ae58033b0a4d420237ae9b2b
@@ -150,6 +151,7 @@ GRAPH
     varnish (>= 0.0.0)
   npm (0.1.2)
     nodejs (>= 0.0.0)
+  ntp (1.6.4)
   ohai (2.0.1)
   openssl (1.1.0)
   owncloud (0.5.0)
