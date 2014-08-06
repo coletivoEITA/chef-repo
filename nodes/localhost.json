@@ -1,42 +1,9 @@
-// cookbook for testing purposes and to server as an example
 {
   "hostname": "localhost",
   "fqdn": "localhost.localdomain",
 
   "locales": {
-    "packages": ["language-pack-pt", "language-pack-en"],
-    "default": "pt_BR.UTF-8"
-  },
-
-  "locale": {
-    "lang": "pt_BR.UTF-8",
-    "lc_all": "pt_BR.UTF-8"
-  },
-
-  "tz": "America/Bahia",
-
-  "limits": {
-    "system_limits": [
-      {"domain": "*", "type": "soft", "item": "nice", "value": "soft"}
-    ]
-  },
-
-  "users": {
-    "create_list": [
-      {
-        "id": "backup",
-        "ssh_keys": [
-          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9gbgFjq2plX2w6PfZjSsio8dA/PS6UNLbYH3zCm52PGTVUX+SY6zOET2X+IYNEwqNl6BKyrUIBTQR+1eaYYAwfHKAuk0B79xMiZgs6cxJfaNa4Y6N57yVSzNEL+NWnDA/dgQBTPuO22N+Kdq78gdl86g4KDQe7GPrOjoPTwppmQ/IMNa2bV/UeQUIQVOalASj7XLVCiKAmweuyP2lVSmgokGjGnJTRji7oEMSgxi7nJwW4BNQZEFhR8+jqnyOEqeTVQXzyi4m/rJ+LyRKm3PsVnD+l+t2UcYsiNfaEli0Vo1rY0s3d7hmAkPgDA9VofHmHwJeADOLlIKdp+ySBWdh braulio@vipra"
-        ]
-      }   
-    ]
-  },
-
-  "backup": {
-    "user": "backup",
-    "group": "backup",
-    "config_path": "/home/backup",
-    "log_path": "/home/backup/log"
+    "packages": ["language-pack-pt", "language-pack-en"]
   },
 
   "rvm": {
@@ -71,7 +38,6 @@
   "postgresql": {
     "version": "9.3",
     "password": {
-      // needed for chef-solo
       "postgres": "iqHDDo1o"
     },
     "config": {
@@ -135,9 +101,7 @@
     "git_url": "https://github.com/ESCAMBO/noosfero-ecosol.git",
     "git_revision": "master",
 
-    //"dependencies_with": "bundler",
     "dependencies_with": "bundler",
-    //"upgrade_script": " ",
     "rvm_load": "ree@noosfero",
 
     "server_name": "localhost",
@@ -182,7 +146,7 @@
     "backup": {
       "enable": true,
       "to": {
-        "host": "localhost",
+        "host": "bhakta.eita.org.br",
         "port": 22,
         "user": "backup"
       }
@@ -228,13 +192,9 @@
   },
   
   "run_list": [
-/*    //"recipe[apt]",
-    "recipe[locales]",
-    "recipe[locale]",
-    "recipe[timezone-ii]",
-    "recipe[limits]",
+    "role[server]",
+    "recipe[eita]",
 
-    //"recipe[rvm::user]",
     "recipe[java]",
 
     "recipe[nginx]",
@@ -246,11 +206,8 @@
     "recipe[postgresql::server]",
 
     "recipe[memcached]",
-*/   
-    "recipe[users]",
+
     "recipe[noosfero]" 
-    //"recipe[etherpad-lite]" 
-    //"recipe[redmine]"
   ]
 }
 
