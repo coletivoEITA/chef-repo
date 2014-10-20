@@ -3,12 +3,12 @@ description "basic server configuration"
 
 run_list [
   "recipe[chef-client]",
+  "recipe[chef-client::config]",
   "recipe[apt]",
   "recipe[hostname]",
   "recipe[timezone-ii]",
   "recipe[ntp]",
   "recipe[locales]",
-  "recipe[locale]",
   "recipe[limits]",
   "recipe[cron]",
   "recipe[logrotate]",
@@ -16,7 +16,6 @@ run_list [
   "recipe[packages]",
   "recipe[users]",
   "recipe[backup]",
-  "recipe[eita]",
 
   "recipe[git]",
   "recipe[mercurial]",
@@ -32,7 +31,7 @@ default_attributes({
   },
   tz: "America/Sao_Paulo",
   ntp: {
-    sync_clock: true,
+    #sync_clock: true,
     servers: [
       'a.ntp.br', 'b.ntp.br', 'c.ntp.br', 'pool.ntp.br',
     ],
@@ -40,10 +39,8 @@ default_attributes({
   },
   locales: {
     default: "pt_BR.UTF-8",
-  },
-  locale: {
-    lang: "pt_BR.UTF-8",
-    lc_all: "pt_BR.UTF-8",
+    available: ["pt_BR.UTF-8", "en_US.UTF-8"],
+    # workaround for https://github.com/hw-cookbooks/locale/issues/13
   },
   limits: {
     system_limits: [
@@ -56,26 +53,6 @@ default_attributes({
     group: "backup",
     config_path: "/home/backup",
     log_path: "/home/backup/log",
-  },
-
-  users: {
-    create_list: [
-      {
-        id: "backup",
-        shell: "/bin/bash",
-        ssh_keys: [
-          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDbq0LXkcxNVwyXFi6TLmk/QckCBeF4IbOLtIz9A9pQOdvjtgTnP03zLA66FIcE9i5znOTNim86lel2dLA+5R5LZCnqmbgdgmD608DFylUf+oOKxz4P8Z2dSMoaxcakH4V27alQM0czvjxBZquLqtsfRNKYUFGe/O1SyRcVvWPaYjLbieZK5Zw1TI1KdmPPa4eTHBA0Dj6mj0YQvaUC4KGPEP//DLb0Rf1jUYXJgktQnYkdNPYxyR7nBFCGU9gNHz9U6QEZ8h3bKtiUK58ZsbsIAkGcHE7Lvaiy28FLGwypdKzFTwWAQ88FK6v3Sz+ARhdWdggRDVpEzDNr0lwrWyA7 eita"
-        ],
-      },
-    ],
-  },
-  eita: {
-    users: [
-      {
-        id: "backup",
-        install_ssh_keys: ["eita"],
-      },
-    ],
   },
 
   mercurial: {
@@ -96,6 +73,26 @@ default_attributes({
     main: {
       #maximal_queue_lifetime: "7d",
       #queue_run_delay: "15m",
+      #FIXME: don't work, block emails
+      #smtpd_recipient_restrictions: "permit_mynetworks",
+    },
+  },
+
+  mysql: {
+    tunable: {
+      key_buffer: '64M',
+    },
+  },
+
+  postgresql: {
+    config: {
+      shared_buffers: "128MB",
+      effective_cache_size: "512MB",
+      datestyle: "iso, dmy",
+      lc_messages: "pt_BR.UTF-8",
+      lc_monetary: "pt_BR.UTF-8",
+      lc_numeric: "pt_BR.UTF-8",
+      lc_time: "pt_BR.UTF-8",
     },
   },
 
@@ -115,3 +112,5 @@ default_attributes({
   },
 
 })
+
+

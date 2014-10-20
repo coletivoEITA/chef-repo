@@ -10,10 +10,10 @@
     "user_installs": [
       {
         "user": "noosfero",
-        "rubies": [ "ree" ],
-        "default_ruby": "ree",
+        "rubies": [ "2.1.3" ],
+        "default_ruby": "2.1.3",
         "gems": {
-          "ree@noosfero": []
+          "2.1.3@noosfero": []
         }
       }
     ]
@@ -31,7 +31,7 @@
 
       "myhostname": "localhost",
       "mydestination": ["localhost.localdomain", "localhost"],
-      "mynetworks": "107.170.19.68/32 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128"
+      "mynetworks": "127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128"
     }
   },
 
@@ -40,19 +40,10 @@
     "password": {
       "postgres": "iqHDDo1o"
     },
-    "config": {
-      "shared_buffers": "128MB",
-      "effective_cache_size": "512MB",
-      "datestyle": "iso, dmy",
-      "lc_messages": "pt_BR.UTF-8",
-      "lc_monetary": "pt_BR.UTF-8",
-      "lc_numeric": "pt_BR.UTF-8",
-      "lc_time": "pt_BR.UTF-8"
-    }
   },
 
   "memcached": {
-    "memory": 128,
+    "memory": 64,
     "listen": "127.0.0.1"
   },
 
@@ -96,17 +87,16 @@
 
   "noosfero": {
     "service_name": "noosfero",
-    "path": "/home/noosfero/escambo.org.br",
+    "path": "/home/noosfero/noosfero",
 
-    "git_url": "https://github.com/ESCAMBO/noosfero-ecosol.git",
-    "git_revision": "master",
+    "git_url": "https://gitlab.com/brauliobo/noosfero.git",
+    "git_revision": "bmaster",
 
     "dependencies_with": "bundler",
-    "rvm_load": "ree@noosfero",
+    "ruby_version": "2.1.3@noosfero",
 
-    "server_name": "localhost",
+    "server_name": "104.131.91.59",
     "custom_domains": [
-      "dev1.t"
     ],
 
     "cache": {
@@ -121,19 +111,18 @@
     },
 
     "db": {
-      "name": "noosfero_escambo.org.br_production",
-      "password": "iqHDDo1o",
-      "create_from_dump": "/home/braulio/Projects/noosfero-ecosol/escambo/dump.sql"
+      "name": "noosfero",
+      "password": "iqHDDo1o"
     },
 
     "environment": {
-      "name": "ESCAMBO",
-      "domain": "escambo.org.br"
+      "name": "Noosfero",
+      "domain": "104.131.91.59"
     },
-    "plugins": ["cms_learning", "currency", "escambo", "evaluation", "exchange", "sniffer", "solr"],
+    "plugins": [],
 
     "settings": {
-      "exception_recipients": ["alantygel@gmail.com", "brauliobo@gmail.com"]
+      "exception_recipients": ["banto@blogoosfero.cc", "brauliobo@gmail.com"]
     },
 
     "plugin_settings": {
@@ -146,55 +135,17 @@
     "backup": {
       "enable": true,
       "to": {
-        "host": "bhakta.eita.org.br",
+        "host": "localhost",
         "port": 22,
         "user": "backup"
       }
     }
   },
-
-  "etherpad-lite": {
-    "service_name": "pad.eita",
-    "service_user": "pad.eita",
-    "service_group": "pad.eita",
-
-    "domain": "pad.eita",
-    "proxy_server": "nginx",
-
-    "db_host": "localhost", 
-    "db_user": "pad.eita", 
-    "db_password": "aniceramdompasswordforchefsolo", 
-    "db_name": "pad.eita",
-
-    "etherpad_git_repo_url": "https://github.com/coletivoEITA/etherpad-lite.git",
-
-    "title": "Pad EITA",
-    "default_text" : "Boas vindas ao nosso editor de texto colaborativo!\n\nVocê e outras pessoas podem escrever ao mesmo tempo, cada um com sua cor, e ao mesmo tempo conversar na coluna de bate-papo à direita.\n\nBom trabalho, sempre em cooperação,\n\nequipe da EITA-Educação, Informação e Tecnologia para Autogestão (http://eita.org.br)",
-
-    "session_key" : "fasfdsafsafdsafdsa",
-    "admin_enabled": true,
-    "admin_password": "hello",
-
-    "use_abiword": false
-  },
-
-  "redmine": {
-    "user"                  : "redmine",
-    "deploy_to"             : "/home/redmine/redmine", 
-    "repo"                  : "git://github.com/redmine/redmine.git",
-    "revision"              : "e94debe4151b23be9edd7f6e5cbc4e724cde832a",
-    "port"                  : "80",
-    "domain"                : "redmine.eita.org.br",
-    "database"              : "redmine",
-    "database_user"         : "redmine",
-    "user_password"         : "lqDAJMBbxyuwg",
-    "server_root_password"  : ""
-  },
   
   "run_list": [
     "role[server]",
-    "recipe[eita]",
 
+    "recipe[rvm::user]",
     "recipe[java]",
 
     "recipe[nginx]",
@@ -204,6 +155,8 @@
     
     "recipe[postgresql]",
     "recipe[postgresql::server]",
+
+    "recipe[postfix::server]",
 
     "recipe[memcached]",
 

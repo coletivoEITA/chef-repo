@@ -1,3 +1,3 @@
 [submodule "cookbooks/noosfero"]
 	path = cookbooks/noosfero
-	url = git@github.com:coletivoEITA/noosfero-cookbook.git
+	url = http://github.com/coletivoEITA/noosfero-cookbook.git

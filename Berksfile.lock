@@ -1,9 +1,11 @@
 DEPENDENCIES
   apache2
     git: git://github.com/coletivoEITA/apache2-cookbook.git
-    revision: bddedb62aedc990594bfbc5db8e35914cf84acb8
+    revision: 1b9c16bb1a4a46af13277ab9ce44414212b24731
   apt
   awstats
+    git: git://github.com/coletivoEITA/awstats-cookbook.git
+    revision: f8938852689bf480998c663b0b96f733c9adb40f
   backup
     git: git://github.com/coletivoEITA/backup-cookbook.git
     revision: 4dc94f0ed210c820b1754f290c7ec12623320357
@@ -12,7 +14,7 @@ DEPENDENCIES
   database
   etherpad-lite
     git: git://github.com/coletivoEITA/etherpad-lite-cookbook.git
-    revision: 640a22504ad28dcebcde4ef231ac98bbc5533d48
+    revision: 0979b71cff70bd88c197f3b5e2ade9052687c85e
   gem_specific_install
     git: git://github.com/coletivoEITA/gem_specific_install-cookbook.git
     revision: 82c0953e0646ec0528bcdb8c4f84d6d509f7dda1
@@ -20,7 +22,6 @@ DEPENDENCIES
   hostname
   limits
   line
-  locale
   locales
   logrotate
   memcached
@@ -31,9 +32,12 @@ DEPENDENCIES
   nginx
     git: git://github.com/coletivoEITA/nginx-cookbook.git
     revision: 39d2b8efdbe14f10a4fac2e6ff435252c34083dd
+  nginx_fallback_to_apache
+    git: git://github.com/coletivoEITA/nginx-fallback-to-apache-cookbook.git
+    revision: acbb50c2bdc240ec422b7a8bcbc45197a19e0f23
   noosfero
     git: git://github.com/coletivoEITA/noosfero-cookbook.git
-    revision: 5bb9a1b9dba3e3fbb5c62b212838dcddc8b1463d
+    revision: f741349875c2a3a967f6e69f83e9c9c6cfc751be
   ntp
   owncloud
     git: git://github.com/coletivoEITA/owncloud-cookbook.git
@@ -52,29 +56,34 @@ DEPENDENCIES
 GRAPH
   7-zip (1.0.2)
     windows (>= 1.2.2)
-  apache2 (1.9.0)
-  apt (2.3.10)
+  apache2 (2.0.0)
+    iptables (>= 0.0.0)
+    logrotate (>= 0.0.0)
+    pacman (>= 0.0.0)
+  apt (2.6.0)
   ark (0.9.0)
     7-zip (>= 0.0.0)
     windows (>= 0.0.0)
-  aws (2.2.0)
+  aws (2.4.0)
   awstats (0.2.2)
-    apache2 (>= 0.0.0)
+    apache2 (>= 2.0.0)
+    cron (>= 0.0.0)
     htpasswd (>= 0.0.0)
   backup (1.0.0)
     cron (>= 0.0.0)
     gem_specific_install (>= 0.0.0)
   bluepill (2.3.1)
     rsyslog (>= 0.0.0)
-  build-essential (2.0.2)
-  chef-client (3.6.0)
+  build-essential (2.0.6)
+  chef-client (3.8.0)
     cron (>= 1.2.0)
     logrotate (>= 1.2.0)
-  chef-sugar (2.0.0)
+    windows (~> 1.11)
+  chef-sugar (2.3.0)
   chef_gem (0.1.0)
   chef_handler (1.1.6)
-  cron (1.4.0)
-  database (2.2.0)
+  cron (1.6.0)
+  database (2.3.0)
     aws (>= 0.0.0)
     mysql (>= 5.0.0)
     mysql-chef_gem (>= 0.0.0)
@@ -82,9 +91,10 @@ GRAPH
     xfs (>= 0.0.0)
   dmg (2.2.0)
   etherpad-lite (0.1.2)
+    apache2 (>= 0.0.0)
+    database (>= 0.0.0)
     nginx (>= 0.0.0)
     nodejs (>= 0.0.0)
-    npm (>= 0.0.0)
     postgresql (>= 0.0.0)
   fetchmail (1.0.1)
   gem_specific_install (0.2.5)
@@ -99,18 +109,16 @@ GRAPH
   hostname (0.3.0)
     hostsfile (>= 0.0.0)
   hostsfile (2.4.5)
-  htpasswd (0.1.2)
+  htpasswd (0.2.4)
     python (>= 0.0.0)
-    ruby (>= 0.0.0)
-  iis (2.1.2)
+  iis (2.1.5)
     windows (>= 1.2.6)
-  iptables (0.13.2)
-  java (1.25.0)
+  iptables (0.14.0)
+  java (1.28.0)
   limits (0.2.0)
   line (0.5.1)
-  locale (0.0.2)
-  locales (0.2.2)
-  logrotate (1.5.0)
+  locales (0.3.1)
+  logrotate (1.7.0)
   memcached (1.7.2)
     runit (~> 1.0)
     yum (~> 3.0)
@@ -121,7 +129,7 @@ GRAPH
     windows (>= 0.0.0)
   mysql (5.3.6)
     yum-mysql-community (>= 0.0.0)
-  mysql-chef_gem (0.0.2)
+  mysql-chef_gem (0.0.5)
     build-essential (>= 0.0.0)
     mysql (>= 0.0.0)
   nginx (2.7.4)
@@ -131,13 +139,16 @@ GRAPH
     ohai (~> 2.0)
     runit (~> 1.2)
     yum-epel (~> 0.3)
-  nodejs (2.0.0)
+  nginx_fallback_to_apache (1.1.0)
+    apache2 (>= 0.0.0)
+    nginx (>= 0.0.0)
+  nodejs (2.1.0)
     apt (>= 0.0.0)
     ark (>= 0.0.0)
     build-essential (>= 0.0.0)
     yum-epel (>= 0.0.0)
-  noosfero (2.4.1)
-    apache2 (>= 0.0.0)
+  noosfero (2.4.6)
+    apache2 (>= 2.0.0)
     awstats (>= 0.0.0)
     backup (>= 0.0.0)
     database (>= 0.0.0)
@@ -149,11 +160,10 @@ GRAPH
     postgresql (>= 0.0.0)
     rvm (>= 0.0.0)
     varnish (>= 0.0.0)
-  npm (0.1.2)
-    nodejs (>= 0.0.0)
-  ntp (1.6.4)
+  ntp (1.6.5)
   ohai (2.0.1)
-  openssl (1.1.0)
+  openssl (2.0.0)
+    chef-sugar (>= 0.0.0)
   owncloud (0.5.0)
     apache2 (>= 0.0.0)
     apt (>= 0.0.0)
@@ -177,8 +187,8 @@ GRAPH
   php-fpm (0.6.10)
     apt (>= 0.0.0)
     yum (>= 3.0.0)
-  postfix (3.2.0)
-  postgresql (3.4.0)
+  postfix (3.6.0)
+  postgresql (3.4.6)
     apt (>= 1.9.0)
     build-essential (>= 0.0.0)
     openssl (>= 0.0.0)
@@ -191,7 +201,6 @@ GRAPH
     fetchmail (>= 0.0.0)
     nginx (>= 0.0.0)
   rsyslog (1.12.2)
-  ruby (0.9.2)
   runit (1.5.10)
     build-essential (>= 0.0.0)
     yum (~> 3.0)
@@ -201,15 +210,19 @@ GRAPH
     java (>= 0.0.0)
   timezone-ii (0.2.0)
   users (1.7.1)
-  varnish (0.9.12)
-  windows (1.31.0)
+  varnish (0.9.18)
+    apt (~> 2.4)
+    build-essential (>= 0.0.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
+  windows (1.34.6)
     chef_handler (>= 0.0.0)
   xfs (1.1.0)
   xml (1.2.6)
     build-essential (>= 0.0.0)
     chef-sugar (>= 0.0.0)
-  yum (3.2.0)
-  yum-epel (0.3.6)
+  yum (3.3.2)
+  yum-epel (0.5.1)
     yum (~> 3.0)
-  yum-mysql-community (0.1.8)
-    yum (>= 3.0.0)
+  yum-mysql-community (0.1.10)
+    yum (>= 3.0)

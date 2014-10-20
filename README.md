@@ -4,9 +4,9 @@ Chef Operator install
 To operate chef-client, you need to install knife on your local machine:
 
     curl -sSL https://get.rvm.io | bash -s stable
-    rvm install 2.1.2
-    rvm 2.1.2@chef --create
-    rvm use 2.1.2@chef
+    rvm install 2.1.3
+    rvm 2.1.3@chef --create
+    rvm use 2.1.3@chef
     bundle install
 
 Chef Client install

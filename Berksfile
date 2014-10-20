@@ -10,8 +10,7 @@ cookbook "apt"
 cookbook "hostname"
 cookbook "timezone-ii"
 cookbook "ntp"
-cookbook "locales"
-cookbook "locale"
+cookbook "locales", github: 'coletivoEITA/chef-locales'
 cookbook "limits"
 cookbook "cron"
 cookbook "logrotate"
@@ -25,6 +24,7 @@ cookbook "mercurial"
 
 cookbook "apache2", github: 'coletivoEITA/apache2-cookbook'
 cookbook "nginx", github: 'coletivoEITA/nginx-cookbook'
+cookbook "nginx_fallback_to_apache", github: 'coletivoEITA/nginx-fallback-to-apache-cookbook'
 
 cookbook "postfix"
 
@@ -43,5 +43,6 @@ cookbook "noosfero", github: 'coletivoEITA/noosfero-cookbook'
 cookbook "request_tracker", github: 'coletivoEITA/request-tracker-cookbook'
 
 cookbook "etherpad-lite", github: 'coletivoEITA/etherpad-lite-cookbook'
+
 
 
