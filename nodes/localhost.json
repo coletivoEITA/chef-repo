@@ -39,7 +39,7 @@
     "version": "9.3",
     "password": {
       "postgres": "iqHDDo1o"
-    },
+    }
   },
 
   "memcached": {
