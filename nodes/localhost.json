@@ -119,7 +119,7 @@
       "name": "Noosfero",
       "domain": "104.131.91.59"
     },
-    "plugins": [],
+    "plugins": "all",
 
     "settings": {
       "exception_recipients": ["banto@blogoosfero.cc", "brauliobo@gmail.com"]
